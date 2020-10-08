@@ -30,7 +30,7 @@ def create_gitignore_and_env_file(folder_name)
   file.close
 end
 
-def command(folder_name)
+def command_init(folder_name)
   Dir.chdir("#{folder_name}") {
     system("git init")
     system("bundle install")
@@ -44,6 +44,23 @@ def create_read_me_file(folder_name)
   file.close
 end
 
+def command_git(folder_name)
+  Dir.chdir("#{folder_name}") {
+    system("git add .")
+    system('git commit -m "first commit"')
+   }
+end
+
+def create_app_rb_file(folder_name)
+  file = File.open("#{folder_name}/lib/app.rb", "a")
+  file.puts("Hello mon boug !")
+  file.close
+
+  file = File.open("#{folder_name}/spec/app_spec.rb", "a")
+  file.puts("Hey mon boug, n'oublies pas tes specs !")
+  file.close
+end
+
 def get_folder_name
   check_if_user_gave_input
   folder_name = ARGV.first
@@ -53,8 +70,10 @@ def get_folder_name
   create_lib_folder(folder_name)
   command(folder_name)
   create_read_me_file(folder_name)
+  create_app_rb_file(folder_name)
+  command_git(folder_name)
 end
-#
+
 get_folder_name
 
 #alias mkdiruby="ruby /Users/david_sfy/Desktop/THP/mkdiruby.rb"
