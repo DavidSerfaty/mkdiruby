@@ -68,7 +68,7 @@ def get_folder_name
   create_gem_file(folder_name)
   create_gitignore_and_env_file(folder_name)
   create_lib_folder(folder_name)
-  command(folder_name)
+  command_init(folder_name)
   create_read_me_file(folder_name)
   create_app_rb_file(folder_name)
   command_git(folder_name)
